@@ -15,7 +15,6 @@
  */
 package com.mysite.core.models;
 
-import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -23,6 +22,7 @@ import org.apache.sling.api.resource.Resource;
 import org.apache.sling.models.annotations.Default;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.settings.SlingSettingsService;
+import org.osgi.service.component.annotations.Activate;
 
 @Model(adaptables=Resource.class)
 public class HelloWorldModel {
@@ -34,8 +34,7 @@ public class HelloWorldModel {
     protected String resourceType;
 
     private String message;
-
-    @PostConstruct
+@Activate
     protected void init() {
         message = "\tHello World!\n";
         message += "\tThis is instance: " + settings.getSlingId() + "\n";
